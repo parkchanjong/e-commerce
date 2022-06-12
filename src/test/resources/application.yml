@@ -1,0 +1,11 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+
+  profiles:
+    active: test
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
