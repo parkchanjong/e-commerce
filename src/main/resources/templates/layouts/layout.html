@@ -8,12 +8,26 @@
   <meta charset="utf-8">
   <link href="../css/bootstrap.min.css"
         th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <link rel="stylesheet" href="../css/layout.css">
 </header>
 
 <header th:replace="fragments/header :: headerFragment"></header>
-<div th:replace="fragments/nav :: navFragment"></div>
 
-<div layout:fragment="content"></div>
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <div th:replace="fragments/leftNav :: leftNavFragment"></div>
+    </div>
+
+    <div class="col-sm-8 text-left">
+      <div layout:fragment="content"></div>
+    </div>
+
+    <div class="col-sm-2 sidenav">
+      <div th:replace="fragments/rightNav :: rightNavFragment"></div>
+    </div>
+  </div>
+</div>
 
 <footer th:replace="fragments/footer :: footerFragment"></footer>
 
