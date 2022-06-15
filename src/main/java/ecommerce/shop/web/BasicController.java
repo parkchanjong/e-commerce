@@ -12,12 +12,7 @@ public class BasicController {
 
     @GetMapping("/hellow")
     public String addForm() {
-        return "content";
-    }
-
-    @GetMapping("/hellow2")
-    public String addForm2() {
-        return "content2";
+        return "login";
     }
 
 }
