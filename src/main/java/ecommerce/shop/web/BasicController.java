@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/basic")
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class BasicController {
 
@@ -15,4 +15,8 @@ public class BasicController {
         return "login";
     }
 
+    @GetMapping("/content")
+    public String addForm2() {
+        return "content";
+    }
 }
