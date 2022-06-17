@@ -12,22 +12,31 @@ spring:
     password:
     driver-class-name: org.h2.Driver
 
-    jpa:
-      open-in-view: true
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
       hibernate:
-        ddl-auto: update
-      properties:
-        hibernate:
-          show_sql: true
-          format_sql: true
-          default_batch_fetch_size: 500
-          use_sql_comments: true
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 500
 
   data:
     web:
       pageable:
         default-page-size: 20
         max-page-size: 2000
+
+server:
+  servlet:
+    session:
+      tracking-modes: cookie
+      timeout: 1800
 
 logging.level:
   org.hibernate.SQL: debug

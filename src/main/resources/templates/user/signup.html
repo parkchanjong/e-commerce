@@ -10,8 +10,8 @@
     <img src=""
          alt="로고">
     <h1>Log into your account</h1>
-    <form action="#">
-      <div class="form-group">
+    <form action="" th:action th:object="${SignupRequestDto}" method="post">
+    <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-envelope ti-email"></i></span>
           <input type="text" class="form-control" placeholder="Your email address">
