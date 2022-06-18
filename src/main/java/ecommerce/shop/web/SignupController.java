@@ -1,8 +1,7 @@
 package ecommerce.shop.web;
 
-import ecommerce.shop.domain.user.UserRepository;
 import ecommerce.shop.service.user.UserService;
-import ecommerce.shop.web.dto.SignupRequestDto;
+import ecommerce.shop.web.form.SignupDto;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,16 +21,18 @@ public class SignupController {
     private final UserService userService;
 
     @GetMapping
-    public String addForm() {
+    public String addForm(@ModelAttribute SignupDto signupDto) {
         return "user/signup";
     }
 
     @PostMapping
-    public String save(@Valid @ModelAttribute SignupRequestDto requestDto, BindingResult result) {
+    public String save(@Valid @ModelAttribute SignupDto signupDto, BindingResult result) {
+
+        log.info("호출");
         if (result.hasErrors()) {
             return "user/signup";
         }
-        userService.save(requestDto);
+        userService.save(signupDto);
         return "redirect:/";
     }
 }

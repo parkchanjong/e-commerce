@@ -1,4 +1,4 @@
-<body class="login-page">
+<body class="login-page" xmlns:th="http://www.w3.org/1999/xhtml">
 <header>
   <meta charset="utf-8">
   <link href="../css/bootstrap.min.css"
@@ -10,18 +10,20 @@
     <img src=""
          alt="로고">
     <h1>Log into your account</h1>
-    <form action="" th:action th:object="${SignupRequestDto}" method="post">
-    <div class="form-group">
+    <form th:action th:object="${signupDto}" method="post">
+      <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-envelope ti-email"></i></span>
-          <input type="text" class="form-control" placeholder="Your email address">
+          <input type="text" th:field="*{email}" class="form-control"
+                 placeholder="Your email address">
         </div>
       </div>
       <hr class="hr-xs">
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
-          <input type="password" class="form-control" placeholder="Choose a password">
+          <input type="password" th:field="*{password}" class="form-control"
+                 placeholder="Choose a password">
         </div>
       </div>
       <button class="btn btn-primary btn-block" type="submit">Sign up</button>

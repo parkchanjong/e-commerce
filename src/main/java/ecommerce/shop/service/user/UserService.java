@@ -1,7 +1,7 @@
 package ecommerce.shop.service.user;
 
 import ecommerce.shop.domain.user.UserRepository;
-import ecommerce.shop.web.dto.SignupRequestDto;
+import ecommerce.shop.web.form.SignupDto;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Long save(SignupRequestDto requestDto) {
-        return userRepository.save(requestDto.toEntity()).getId();
+    public Long save(SignupDto signupDto) {
+        return userRepository.save(signupDto.toEntity()).getId();
     }
 }
