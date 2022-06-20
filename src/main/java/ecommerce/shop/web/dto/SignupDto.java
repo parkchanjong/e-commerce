@@ -1,4 +1,4 @@
-package ecommerce.shop.web.form;
+package ecommerce.shop.web.dto;
 
 import ecommerce.shop.domain.user.User;
 import javax.validation.constraints.NotEmpty;

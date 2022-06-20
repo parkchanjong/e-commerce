@@ -1,7 +1,8 @@
 package ecommerce.shop.service.user;
 
 import ecommerce.shop.domain.user.UserRepository;
-import ecommerce.shop.web.form.SignupDto;
+import ecommerce.shop.web.dto.LoginDto;
+import ecommerce.shop.web.dto.SignupDto;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,12 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Long save(SignupDto signupDto) {
-        return userRepository.save(signupDto.toEntity()).getId();
+    public void save(SignupDto signupDto) {
+    }
+
+    @Transactional
+    public Long findByEmail(LoginDto loginDto) {
+        // TODO: 로그인 인증 로직
+        return 1L;
     }
 }
