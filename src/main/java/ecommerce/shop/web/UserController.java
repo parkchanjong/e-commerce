@@ -49,7 +49,7 @@ public class UserController {
         if (result.hasErrors()) {
             return "user/login";
         }
-        userService.findByEmail(loginDto);
+        userService.login(loginDto);
         return "redirect:/";
     }
 }
