@@ -1,4 +1,4 @@
-package ecommerce.shop.web;
+package ecommerce.shop.web.controller;
 
 import ecommerce.shop.service.user.UserService;
 import ecommerce.shop.web.dto.LoginDto;
