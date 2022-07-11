@@ -2,6 +2,7 @@ package ecommerce.shop.domain.user;
 
 import ecommerce.shop.domain.BaseTimeEntity;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Random;
 import javax.crypto.Cipher;
@@ -62,7 +63,7 @@ public class User extends BaseTimeEntity {
     public String randomWord() {
         byte[] array = new byte[7];
         new Random().nextBytes(array);
-        return new String(array, Charset.forName("UTF-8"));
+        return new String(array, StandardCharsets.UTF_8);
     }
 
     public String encrypt(String text) throws Exception {
@@ -75,7 +76,7 @@ public class User extends BaseTimeEntity {
         IvParameterSpec ivParamSpec = new IvParameterSpec(iv.getBytes());
         cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivParamSpec);
 
-        byte[] encrypted = cipher.doFinal(text.getBytes("UTF-8"));
+        byte[] encrypted = cipher.doFinal(text.getBytes(StandardCharsets.UTF_8));
         return Base64.getEncoder().encodeToString(encrypted);
     }
 }
