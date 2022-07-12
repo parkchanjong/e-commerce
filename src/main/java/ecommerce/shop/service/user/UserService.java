@@ -25,18 +25,21 @@ public class UserService {
     private void validateDuplicateMember(SignupDto signupDto) {
         Optional<User> findUser = userRepository.findByEmail(signupDto.getEmail());
         if (findUser.isPresent()) {
+            //TODO:예외 처리 변경
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
 
     @Transactional(readOnly = true)
     public Optional<User> login(LoginDto loginDto) {
-        Optional<User> findUser = userRepository.findByEmail(loginDto.getEmail());
-        if (findUser.isPresent()) {
-            throw new IllegalStateException("존재하지 않는 회원입니다.");
-        }
-
-        // TODO: 비밀번호 인증, 세션 설정
-        return findUser;
+        return userRepository.findByEmail(loginDto.getEmail()).filter(user -> {
+            try {
+                return user.getPassword()
+                        .equals(user.encrypt(loginDto.getPassword() + user.getSalt()));
+            } catch (Exception e) {
+                //TODO:예외 처리 변경
+                throw new IllegalStateException("아이디 또는 비밀번호가 맞지 않습니다.");
+            }
+        });
     }
 }

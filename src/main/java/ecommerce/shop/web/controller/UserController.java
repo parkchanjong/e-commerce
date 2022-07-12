@@ -1,8 +1,13 @@
 package ecommerce.shop.web.controller;
 
+import ecommerce.shop.domain.user.User;
+import ecommerce.shop.service.user.SessionConst;
 import ecommerce.shop.service.user.UserService;
 import ecommerce.shop.web.dto.LoginDto;
 import ecommerce.shop.web.dto.SignupDto;
+import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,13 +48,31 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute LoginDto loginDto, BindingResult result) {
+    public String login(@Valid @ModelAttribute LoginDto loginDto, BindingResult bindingResult,
+            HttpServletRequest request) {
 
-        log.info("로그인");
-        if (result.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "user/login";
         }
         userService.login(loginDto);
+        Optional<User> loginMember = userService.login(loginDto);
+
+        if (loginMember.isEmpty()) {
+            bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
+            return "user/signup";
+        }
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
         return "redirect:/";
     }
 }
