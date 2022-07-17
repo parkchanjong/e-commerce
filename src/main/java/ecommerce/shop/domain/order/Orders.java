@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "ORDERS")
 @Entity
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "POSTS_ID")
+    @Column(name = "ORDERS_ID")
     private Long id;
 }
