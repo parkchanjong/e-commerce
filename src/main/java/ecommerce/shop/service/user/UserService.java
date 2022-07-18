@@ -17,15 +17,14 @@ public class UserService {
 
     @Transactional
     public void save(SignupDto signupDto) {
-        validateDuplicateMember(signupDto);
+        validateDuplicateUser(signupDto);
         userRepository.save(signupDto.toEntity());
     }
 
     @Transactional(readOnly = true)
-    private void validateDuplicateMember(SignupDto signupDto) {
+    private void validateDuplicateUser(SignupDto signupDto) {
         Optional<User> findUser = userRepository.findByEmail(signupDto.getEmail());
         if (findUser.isPresent()) {
-            //TODO:예외 처리 변경
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
@@ -37,7 +36,6 @@ public class UserService {
                 return user.getPassword()
                         .equals(user.encrypt(loginDto.getPassword() + user.getSalt()));
             } catch (Exception e) {
-                //TODO:예외 처리 변경
                 throw new IllegalStateException("아이디 또는 비밀번호가 맞지 않습니다.");
             }
         });

@@ -1,7 +1,6 @@
 package ecommerce.shop.domain.user;
 
 import ecommerce.shop.domain.BaseTimeEntity;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Random;
@@ -54,10 +53,8 @@ public class User extends BaseTimeEntity {
         }
     }
 
-    public User update(String name) {
+    public void update(String name) {
         this.name = name;
-
-        return this;
     }
 
     public String randomWord() {
