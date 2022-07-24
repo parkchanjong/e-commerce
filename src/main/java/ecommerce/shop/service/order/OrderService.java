@@ -1,6 +1,6 @@
 package ecommerce.shop.service.order;
 
-import ecommerce.shop.domain.order.OrderRepository;
+import ecommerce.shop.domain.order.OrdersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderService {
 
-    private final OrderRepository orderRepository;
+    private final OrdersRepository ordersRepository;
 }
