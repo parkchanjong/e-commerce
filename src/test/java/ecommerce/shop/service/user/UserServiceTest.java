@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import ecommerce.shop.domain.user.User;
 import ecommerce.shop.domain.user.UserRepository;
-import ecommerce.shop.web.dto.SignupDto;
+import ecommerce.shop.web.dto.user.SignupDto;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

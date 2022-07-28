@@ -1,4 +1,4 @@
-package ecommerce.shop.web.dto;
+package ecommerce.shop.web.dto.user;
 
 import ecommerce.shop.domain.user.User;
 import javax.validation.constraints.Email;
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class SignupDto {
+public class LoginDto {
 
     @NotBlank(message = "이메일 주소를 입력해주세요.")
     @Email(message = "이메일 주소를 입력해주세요.")

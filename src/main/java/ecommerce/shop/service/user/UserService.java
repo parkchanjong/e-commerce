@@ -2,8 +2,8 @@ package ecommerce.shop.service.user;
 
 import ecommerce.shop.domain.user.User;
 import ecommerce.shop.domain.user.UserRepository;
-import ecommerce.shop.web.dto.LoginDto;
-import ecommerce.shop.web.dto.SignupDto;
+import ecommerce.shop.web.dto.user.LoginDto;
+import ecommerce.shop.web.dto.user.SignupDto;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
