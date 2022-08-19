@@ -20,4 +20,7 @@ public class Orders extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDERS_ID")
     private Long id;
+
+    @Column(nullable = false, name = "AMOUNT")
+    private String amount;
 }
