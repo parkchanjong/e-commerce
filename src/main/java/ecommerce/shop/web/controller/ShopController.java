@@ -21,9 +21,5 @@ public class ShopController {
     public String list() {
         return "shop/list";
     }
-
-    @GetMapping("/posts/list")
-    public List<PostsListResponseDto> findAll() {
-        return postsService.findAllDesc();
-    }
+    
 }
