@@ -1,6 +1,7 @@
 package ecommerce.shop.web.dto.posts;
 
 import ecommerce.shop.domain.posts.Posts;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
