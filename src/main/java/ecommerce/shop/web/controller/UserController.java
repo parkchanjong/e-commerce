@@ -1,5 +1,9 @@
 package ecommerce.shop.web.controller;
 
+import static ecommerce.shop.utils.HttpResponses.RESPONSE_BAD_REQUEST;
+import static ecommerce.shop.utils.HttpResponses.RESPONSE_OK;
+import static ecommerce.shop.utils.HttpResponses.RESPONSE_UNAUTHORIZED;
+
 import ecommerce.shop.domain.user.User;
 import ecommerce.shop.service.user.SessionConst;
 import ecommerce.shop.service.user.UserService;
@@ -11,16 +15,19 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @Controller
 @RequestMapping
+@RestController
 @RequiredArgsConstructor
 public class UserController {
 
@@ -48,23 +55,23 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute LoginDto loginDto, BindingResult bindingResult,
-            HttpServletRequest request) {
+    public ResponseEntity<Void> login(@Valid @ModelAttribute LoginDto loginDto,
+            BindingResult bindingResult, HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
-            return "user/login";
+            return RESPONSE_BAD_REQUEST;
         }
         userService.login(loginDto);
         Optional<User> loginMember = userService.login(loginDto);
 
         if (loginMember.isEmpty()) {
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "user/signup";
+            return RESPONSE_UNAUTHORIZED;
         }
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
-        return "redirect:/";
+        return RESPONSE_OK;
     }
 
     @PostMapping("/logout")
