@@ -33,20 +33,16 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/signup")
-    public String addSignupForm(@ModelAttribute SignupDto signupDto) {
-        return "user/signup";
-    }
-
     @PostMapping("/signup")
-    public String signup(@Valid @ModelAttribute SignupDto signupDto, BindingResult result) {
+    public ResponseEntity<Void> signup(@Valid @ModelAttribute SignupDto signupDto,
+            BindingResult result) {
 
         log.info("회원가입");
         if (result.hasErrors()) {
-            return "user/signup";
+            return RESPONSE_BAD_REQUEST;
         }
         userService.save(signupDto);
-        return "redirect:/";
+        return RESPONSE_OK;
     }
 
     @GetMapping("/login")
@@ -75,11 +71,11 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public String logout(HttpServletRequest request) {
+    public ResponseEntity<Void> logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
-        return "redirect:/";
+        return RESPONSE_OK;
     }
 }
