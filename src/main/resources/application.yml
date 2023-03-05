@@ -37,6 +37,9 @@ server:
     session:
       tracking-modes: cookie
       timeout: 1800
+  tomcat:
+    mbeanregistry:
+      enabled: true
 
 logging.level:
   org.hibernate.SQL: debug
