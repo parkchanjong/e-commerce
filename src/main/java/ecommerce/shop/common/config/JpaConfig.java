@@ -1,4 +1,4 @@
-package ecommerce.shop.config;
+package ecommerce.shop.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

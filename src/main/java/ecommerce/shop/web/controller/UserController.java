@@ -1,6 +1,6 @@
 package ecommerce.shop.web.controller;
 
-import static ecommerce.shop.utils.HttpResponses.RESPONSE_OK;
+import static ecommerce.shop.common.utils.HttpResponses.RESPONSE_OK;
 
 import ecommerce.shop.domain.user.User;
 import ecommerce.shop.service.user.SessionConst;
@@ -14,7 +14,6 @@ import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

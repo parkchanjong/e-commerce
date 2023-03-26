@@ -1,14 +1,12 @@
 package ecommerce.shop;
 
+import ecommerce.shop.common.properties.AppProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.boot.autoconfigure.cache.CacheProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-@EnableAspectJAutoProxy
-@EnableAsync
-@EnableCaching
+@EnableConfigurationProperties(value = {AppProperties.class, CacheProperties.class})
 @SpringBootApplication
 public class ShopApplication {
 
