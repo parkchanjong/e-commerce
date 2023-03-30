@@ -1,5 +1,7 @@
 package ecommerce.shop.web.controller;
 
+import static ecommerce.shop.common.utils.HttpResponses.RESPONSE_OK;
+
 import ecommerce.shop.service.posts.PostsService;
 import ecommerce.shop.web.dto.posts.PostsListResponseDto;
 import ecommerce.shop.web.dto.posts.PostsResponseDto;
@@ -8,8 +10,8 @@ import ecommerce.shop.web.dto.posts.PostsUpdateRequestDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,19 +29,13 @@ public class PostsController {
     private final PostsService postsService;
 
     @GetMapping
-    public String list(Model model) {
-        model.addAttribute("posts", postsService.findAllDesc());
-        return "posts/list";
+    public List<PostsListResponseDto> list() {
+        return postsService.findAllDesc();
     }
 
     @GetMapping("/update/{id}")
-    public String postsUpdate(@PathVariable Long id, Model model) {
-        return "posts/update";
-    }
-
-    @GetMapping("/save")
-    public String postsSave() {
-        return "posts/save";
+    public ResponseEntity<Void> postsUpdate(@PathVariable Long id) {
+        return RESPONSE_OK;
     }
 
     @PostMapping("/api/v1/posts")
