@@ -1,6 +1,6 @@
 package ecommerce.shop.service.user;
 
-import ecommerce.shop.domain.user.UserRepository;
+import ecommerce.shop.domain.users.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
